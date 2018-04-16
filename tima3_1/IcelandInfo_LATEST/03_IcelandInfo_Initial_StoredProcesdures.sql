@@ -1,4 +1,5 @@
 -- 0000000000000000000000000000000000000000000000000000000 PLACES 0000000000000000000000000000000000000000000000000000000 --
+use 0905002950_icelandInfo;
 
 delimiter $$
 drop procedure if exists AddPlace $$
@@ -15,7 +16,7 @@ create procedure AddPlace
 begin
 	declare coord_id int;
     
-    set coord_id = 0;
+    set coord_id = null;
     if coord_lat is not null and coord_long is not null then
 		insert into coordinates(latitude, longitude)values(coord_lat,coord_long);
         set coord_id = last_insert_id();
@@ -66,11 +67,11 @@ create procedure UpdatePlace
 begin
 	if coordinate_id is null then
 		update Places
-		set placeName = placeName,region = place_region,population = place_population,webpage = web
+		set placeName = place_name,region = place_region,population = place_population,webpage = web
 		where placeID = place_id;
     else
 		update Places
-		set placeName = placeName,coordinateID = coordinate_id,region = place_region,population = place_population,webpage = web
+		set placeName = place_name,coordinateID = coordinate_id,region = place_region,population = place_population,webpage = web
 		where placeID = place_id;
 	end if;
     
