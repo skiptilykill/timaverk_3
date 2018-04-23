@@ -1,7 +1,6 @@
 import sys
 from IcelandInfo_LATEST.Python.iceconnect import *
 
-
 def valmynd():
     running = True
     places = PlaceDB()
@@ -126,15 +125,22 @@ def valmynd():
                 print("Back [6]")
                 crud = int(input("Type here: "))
                 if (crud == 1):
-                    pass
+                    #LittleBits, Asian, 70, skúlagata 5, Alex, https://www.mbl.is, 5659128, 112
+                    print("Add place(put it all in ONE! line, no \"): [NAME], [TYPE], [CAPACITY], [ADDRESS], [MANAGER], [WEB], [PHONE], [DIST]")
+                    r = input("Type here: ")
+                    rlist = [r.strip() for z in r.split(',')]
+                    restaurant.add_restaurant(rlist[0], rlist[1], rlist[2], rlist[3],rlist[4],rlist[5],rlist[6],rlist[7])
                 elif (crud == 2):
-                    pass
+                    id = int(input("Type restaurant id here: "))
+                    print(restaurant.get_restaurant(id))
 
                 elif (crud == 3):
                     pass
-
                 elif (crud == 4):
-                    pass
+                    id = int(input("Type restaurant ID you want to delete here: "))
+                    r = restaurant.get_restaurant(id)
+                    restaurant.delete_restaurant(id)
+
                 elif (crud == 5):
                     print(restaurant.get_restaurant_list())
                 elif (crud == 6):
